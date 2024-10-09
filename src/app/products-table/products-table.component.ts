@@ -28,7 +28,7 @@ import {
   styleUrl: './products-table.component.css'
 })
 export class ProductsTableComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'title', 'category', 'price', 'actions'];
+  displayedColumns: string[] = ['id', 'image', 'title', 'category', 'price', 'actions'];
   dataSource = new MatTableDataSource<ProductModel>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
@@ -39,7 +39,7 @@ export class ProductsTableComponent implements AfterViewInit {
     private snackBar: MatSnackBar
   ) {
     productsService.getAll().subscribe(data =>
-      this.dataSource.data = data.products
+      this.dataSource.data = data
     );
   }
 
@@ -58,9 +58,12 @@ export class ProductsTableComponent implements AfterViewInit {
       }
     });
 
-    ref.afterClosed().subscribe(result => {
-      if (result) {
-        this.productsService.delete(result).subscribe(res => {
+    ref.afterClosed().subscribe(idToDelete => {
+      if (idToDelete) {
+        this.productsService.delete(idToDelete).subscribe(res => {
+
+          this.dataSource.data = this.dataSource.data.filter(x => x.id !== idToDelete);
+
           this.snackBar.open('Deleted succesfully', 'Dismiss', {
             horizontalPosition: "center",
             verticalPosition: "top",
