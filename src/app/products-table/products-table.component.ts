@@ -61,8 +61,6 @@ export class ProductsTableComponent implements AfterViewInit {
     ref.afterClosed().subscribe(result => {
       if (result) {
         this.productsService.delete(result).subscribe(res => {
-          console.log(result);
-
           this.snackBar.open('Deleted succesfully', 'Dismiss', {
             horizontalPosition: "center",
             verticalPosition: "top",
