@@ -4,6 +4,7 @@
 .card img {
     height: 200px;
     object-fit: contain;
+    margin: 6px 0;
 }
 
 .container {

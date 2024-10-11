@@ -17,6 +17,10 @@ export class ProductsService {
     return this.http.get<ProductModel[]>(api + "all");
   }
 
+  create(model: ProductModel): Observable<any> {
+    return this.http.post(api, model);
+  }
+
   delete(id: number): Observable<any> {
     return this.http.delete(api + id);
   }
