@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductsService } from '../services/products.service';
-import { ProductModel } from '../models/products';
+import { CategoryModel, ProductModel } from '../models/products';
 
 @Component({
   selector: 'app-product-form',
@@ -25,8 +25,9 @@ import { ProductModel } from '../models/products';
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.css'
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
   form: FormGroup;
+  categories: CategoryModel[] = [];
 
   constructor(
     fb: FormBuilder,
@@ -42,6 +43,10 @@ export class ProductFormComponent {
       description: [null, Validators.maxLength(2000)],
       categoryId: [0, Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    this.productsService.getCategories().subscribe(data => this.categories = data);
   }
 
   submit() {

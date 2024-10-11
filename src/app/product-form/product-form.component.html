@@ -28,9 +28,9 @@
     <mat-form-field>
         <mat-label>Category</mat-label>
         <mat-select formControlName="categoryId">
-            <!-- TODO: load from server -->
-          <mat-option value="1">Electronics</mat-option>
-          <mat-option value="2">Sport</mat-option>
+            @for (i of categories; track i.id) {
+                <mat-option value="{{i.id}}">{{i.name}}</mat-option>
+            }
         </mat-select>
       </mat-form-field>
 

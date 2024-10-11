@@ -13,6 +13,11 @@ export interface ProductModel {
     imageUrl: string;
 }
 
+export interface CategoryModel {
+    id: number;
+    name: string;
+}
+
 const ELEMENT_DATA: ProductModel[] = [
     {
         id: 100, title: "iPhone X", discount: 0, categoryName: "Electronics", price: 3400, quantity: 10, imageUrl: "https://applehome.te.ua/wp-content/uploads/2021/04/apple-iphone-x-64gb-used-silver-2.1000x.jpg"

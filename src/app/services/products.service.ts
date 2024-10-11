@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProductModel, ProductsResponse } from '../models/products';
+import { CategoryModel, ProductModel, ProductsResponse } from '../models/products';
 import { Observable } from 'rxjs';
 
 const apiFake = "https://dummyjson.com/products/";
@@ -15,6 +15,10 @@ export class ProductsService {
 
   getAll(): Observable<ProductModel[]> {
     return this.http.get<ProductModel[]>(api + "all");
+  }
+
+  getCategories(): Observable<CategoryModel[]> {
+    return this.http.get<CategoryModel[]>(api + "categories");
   }
 
   create(model: ProductModel): Observable<any> {
