@@ -5,3 +5,7 @@ table {
 .red {
   color: rgb(221, 72, 72);
 }
+
+.gray {
+  color: gray;
+}

@@ -1,4 +1,4 @@
-<h1>Create New Product</h1>
+<h1>{{editMode ? "Edit" : "Create New"}} Product</h1>
 
 <form [formGroup]="form" (ngSubmit)="submit()">
     <mat-form-field>
@@ -28,11 +28,13 @@
     <mat-form-field>
         <mat-label>Category</mat-label>
         <mat-select formControlName="categoryId">
-            @for (i of categories; track i.id) {
+            <!-- @for (i of categories; track i.id) {
                 <mat-option value="{{i.id}}">{{i.name}}</mat-option>
-            }
+            } -->
+            <mat-option value="1">Electronics</mat-option>
+            <mat-option value="2">Sport</mat-option>
         </mat-select>
-      </mat-form-field>
+    </mat-form-field>
 
     <mat-form-field>
         <mat-label>Description</mat-label>
@@ -41,7 +43,7 @@
 
     <div class="buttons">
         <button type="button" (click)="back()" mat-raised-button>Back</button>
-        <button type="submit" mat-raised-button>Create</button>
+        <button type="submit" mat-raised-button>{{editMode ? "Edit" : "Create"}}</button>
     </div>
 
 </form>
